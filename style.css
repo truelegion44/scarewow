@@ -1,0 +1,181 @@
+:root {
+  /*color scheme*/
+  --dark-background: #212121;
+  --light-text: #f5f5f5;
+
+  /*fonts*/
+  --h-font: "Inconsolata", monospace;
+  --text-font: "Space Mono", monospace;
+  --f-font: "Montserrat", sans-serif;
+}
+
+/*======================================
+Back to Basics - reset browser defaults
+=======================================*/
+html,
+body {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+/*set global styles*/
+body * {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  margin: 0;
+}
+
+/*================
+Text and Fonts
+=================*/
+
+/*reset default font - never shall Time New Roman be seen agan!*/
+h1,
+p,
+button {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-family: var(--text-font);
+  line-height: 150%;
+  font-size: clamp(2.6rem, 4rem, 5.2rem);
+}
+
+p,
+button {
+  font-family: var(--text-font);
+  line-height: 150%;
+}
+
+
+
+/*================
+Layout
+=================*/
+body {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  grid-template-rows: minmax(min-content, 50px) auto minmax(min-content, 50px);
+}
+
+/*================
+Section Styling
+=================*/
+/*Header box*/
+header {
+  grid-area: header;
+  place-self: start start;
+}
+
+header p {
+  font-family: var(--h-font);
+}
+
+/*page container*/
+main {
+  grid-area: main;
+  place-self: center center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+/*Image box*/
+figure {
+  flex: 1 0 50%;
+  position: relative;
+  padding: 3rem;
+  margin: auto;
+}
+
+img {
+  max-width: 100%;
+  display: inline-block;
+}
+
+/*Content box*/
+#content {
+  flex: 1 0 50%;
+}
+
+#section-header {
+  margin: 1.5rem auto;
+  text-wrap: balance;
+}
+
+#section-content {
+  font-size: 1.5rem;
+  margin: 1.5rem auto;
+}
+
+/*button style*/
+#homepage-button {
+  background-color: var(--dark-background);
+  color: var(--light-text);
+  font-size: 0.8rem;
+  line-height: 150%;
+  padding: 1rem;
+  width: 50%;
+}
+/*=====
+Footer
+======*/
+footer {
+  grid-area: footer;
+  place-self: end center;
+  margin-top: 1rem;
+}
+
+#allaboutme {
+  text-align: center;
+  font-family: var(--f-font);
+  font-size: 0.8rem;
+  padding: 0.5rem 0;
+}
+
+/*================
+The little touches
+=================*/
+
+/*In the dreaded case of image not found*/
+img:after {
+  display: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.3rem;
+  border: 0.1rem dashed var(--dark-background);
+  background-color: grey;
+  z-index: 10;
+  font-family: verdana;
+  font-size: 0.8em;
+  text-align: center;
+  content: "Image of " attr(alt) " was not found";
+}
+
+/*=============
+Responsiveness
+===============*/
+
+/*Media queries for portable screen views - tablets and phones 375px*/
+
+@media only screen and (max-width: 375px) {
+  /*single column layout*/
+  main {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "content";
+    margin: 0 auto;
+    padding: 1rem;
+    grid-gap: 0;
+  }
+}
